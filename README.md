@@ -1,24 +1,24 @@
-###### FINA4380 Group Project
+# FINA4380 Group Project
 ###  Strategy Design
 - Statistical Arbitrage
 - Measured in absolute return
 - long-short
 - US$ 1 million initial investment
-#Motivation
-#Hypothesis
-#sample
+######Motivation
+######Hypothesis
+######sample
 Daily stock price from past ten years.
-#Step 1
+######Step 1
 Divide stocks by 24 industry groups by GICS. With cryptocurrencies, we have 24 + 1 = 25 industry groups.
-#Step 2
+######Step 2
 In each group, find a pair of assets that are highly positively correlated.
-#Step 3
+######Step 3
 
-#Step 4
+######Step 4
 
-#Step 5
+######Step 5
 
-#Step 6
+######Step 6
 
 
 2. 在numda由小到大排列  找寻numda小 且spread>5%的组合作为投资标的 

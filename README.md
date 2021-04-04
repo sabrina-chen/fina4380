@@ -3,12 +3,15 @@
 - Statistical Arbitrage
 - Measured in absolute return
 - long-short
-- US$ 1 million initial investment equally divided into 25 shares to allocate in each pair.
+- US$ 10 million initial investment equally divided into 25 shares to allocate in each pair.
 - Any publicly listed US company and cryptocurrency
 ###### Motivation
 
 ###### Hypothesis
 We find two assets in each of the 25 industry groups that are highly correlated with each other. We run an cointegration test on the historical data, and set the tragger condition fo rboth stocks. Theoretically these two stocks cannot drift too far from each other. When one stock is getting overvalued, we short the bullish one and long the bearish one, vice versa.
+In order to take advantage of such small mispricings, we may have to be heavily leveraged.
+Most likely large cap stocks because small caps simply can't offer the volume.
+Built-in security measures: liquidate upon a move downward. liquidation orders may trigger more sell orders and cause a horrible loop.
 ###### Sample
 Daily stock price from past ten years.
 ###### Step 1

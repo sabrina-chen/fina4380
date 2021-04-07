@@ -15,7 +15,7 @@ Built-in security measures: liquidate upon a move downward. liquidation orders m
 ###### Sample
 Daily stock price from past ten years. (Tentative. When actually running the program we can parse in arguments such as data frequency and time frame to see how the model performs under different settings.)
 ###### Step 1
-Divide stocks to 11 sector groups by GICS.
+Divide stocks to 24 sector groups by GICS.
 ###### Step 2
 In each group, find a pair of assets that are highly positively correlated. Use a two-step test to test for cointegration. First using log prices to run a regression to find the cointegration ratio between two asseets. Secondly run an ADF test to test if the assets are non-stationary.
 ###### Step 3

@@ -3,12 +3,12 @@
 - Statistical Arbitrage
 - Measured in absolute return
 - long-short
-- US$ 10 million initial investment equally divided into 11 shares to allocate in each pair.
-- All publicly traded U.S. Equity large- and mid- cap. (market cap >= US$2billion as of 05/04/2021)
+- US$ 10 million initial investment equally divided into 24 shares to allocate in each pair.
+- S&P 500
 ###### Motivation
 
 ###### Hypothesis
-We find two assets in each of the 11 sector groups (according to MSCI) that are highly correlated with each other. We run an cointegration test on the historical data, and set the tragger condition fo rboth stocks. Theoretically these two stocks cannot drift too far from each other. When one stock is getting overvalued, we short the bullish one and long the bearish one, vice versa.
+We find two assets in each of the 24 industry groups (according to MSCI) that are highly correlated with each other. We run an cointegration test on the historical data, and set the tragger condition fo rboth stocks. Theoretically these two stocks cannot drift too far from each other. When one stock is getting overvalued, we short the bullish one and long the bearish one, vice versa.
 In order to take advantage of such small mispricings, we may have to be heavily leveraged.
 We trade large- and mid- cap stocks because very likely small caps simply can't offer the volume. A multi hundred thousand dollar trade could move the market price hence render the back testing results unreliable.
 Built-in security measures: liquidate upon a move downward. liquidation orders may trigger more sell orders and cause a horrible loop.

@@ -4,7 +4,7 @@
 - Measured in absolute return
 - long-short
 - US$ 10 million initial investment equally divided into 24 shares to allocate in each pair.
-- S&P 500
+- US market large- and mid- cap
 ###### Motivation
 
 ###### Hypothesis

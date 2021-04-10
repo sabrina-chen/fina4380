@@ -1,23 +1,31 @@
-# Tentative structure of class dailyUpdate
 # new DailyUpdate() object is created every day
 
 import pandas as pd
 import numpy as np
 from scipy import odr
 import statsmodels.api as sm
+from statsmodels.tsa.stattools import adfuller
 
 
 class DailyUpdate:
-    def __init__(self, logreturns, tickers, portfolio=None):    # logreturns of past 1 year (for testing)
+    def __init__(self, cumlogRet, tickers, portfolio=None):
+        """
+        cumlogRet: cumulative log return (ln(P_t/P_0)) of past 1 year for running regression and ADF test
+        """
         # example of portfolio (and newPort): (in pd.DataFrame() form?)
-        # [[stock-A1, industry-A, weight-A1], 
-        #  [stock-A2, industry-A, weight-A2],
-        #  [stock-B1, industry-B, weight-B1],
-        #  [stock-B2, industry-B, weight-B2], ...]
+        #         0                                               1         2
+        # 0     ROP                                   Capital Goods  1.000000
+        # 1     IEX                                   Capital Goods -1.156573
+        # 2     VFC                     Consumer Durables & Apparel  1.000000
+        # 3     HBI                     Consumer Durables & Apparel -1.570413
+        # 4     DFS                          Diversified Financials  1.000000
+        # 5     BEN                          Diversified Financials -0.837092
+        # 6     OXY                                          Energy  1.000000
+        # 7     OKE                                          Energy -0.864398
         
-        self.logreturns = logreturns.copy()
+        self.cumlogRet = cumlogRet.copy()
         if portfolio is not None:
-            self.port = portfolio.groupby("Industry Group")
+            self.port = portfolio.groupby([1])
         else:
             self.port = pd.DataFrame()
         self.tickers = tickers.groupby("Industry Group")
@@ -32,10 +40,16 @@ class DailyUpdate:
         #         self.newPort.append(findPair(industry))    # current portfolio using findPair()
         #     else:
         #         self.newport.append(currentpair)
-        if not self.port.empty:
+        try:
+            self.port.empty
+            for industry, group in self.tickers:
+                print("finding: "+industry+"...")
+                newpair = self.findPair(industry)
+                self.newPort = self.newPort.append(newpair, ignore_index=True)
+        except:
             for industry, group in self.port:
                 linear = odr.Model(self.__linearReg__)
-                datafit = odr.Data(self.logreturns[group["stock"]].iloc[:,0], self.logreturns[group["stock"]].iloc[:,1])    # "stock" subject to change
+                datafit = odr.Data(self.cumlogRet[group.iloc[0,0]], self.cumlogRet[group.iloc[1,0]])    # "stock" subject to change
                 reg1_odr = odr.ODR(datafit, linear, beta0=[1., 1.])
                 reg1_res = reg1_odr.run()
                 
@@ -43,15 +57,12 @@ class DailyUpdate:
                 # AIC test to find lag variable to include?
                 reg2 = sm.OLS(deltaEps, reg1_res.eps[1:])
                 reg2_res = reg2.fit()
-                if reg2_res.tvalues > -3 or -np.sqrt(reg1_res.res_var) / 10 < reg1_res.eps[-1] < -np.sqrt(reg1_res.res_var) / 10:
+                if reg2_res.tvalues > -3 or (-np.sqrt(reg1_res.res_var) / 10 < reg1_res.eps[-1] < -np.sqrt(reg1_res.res_var) / 10) or abs(reg1_res.eps[-1]) > np.sqrt(reg1_res.res_var) * 2.5:
+                    print("Finding newpair: "+industry)
                     newpair = self.findPair(industry)
                     self.newPort = self.newPort.append(newpair, ignore_index=True)
                 else:
                     self.newPort = self.newPort.append(group, ignore_index=True)
-        else:
-            for industry, group in self.tickers:
-                newpair = self.findPair(industry)
-                self.newPort = self.newPort.append(newpair, ignore_index=True)
             
 
     def findPair(self, industry):    # find pairs of stock where arbitrage exists "within industry groups"
@@ -71,16 +82,15 @@ class DailyUpdate:
         for i in range(n - 1):
             for j in range(i + 1, n):
                 linear = odr.Model(self.__linearReg__)
-                datafit = odr.Data(self.logreturns[group.iloc[i,0]], self.logreturns[group.iloc[j,0]])
+                datafit = odr.Data(self.cumlogRet[group.iloc[i,0]], self.cumlogRet[group.iloc[j,0]])
                 reg1_odr = odr.ODR(datafit, linear, beta0=[1., 1.])
                 reg1_res = reg1_odr.run()
 
-                deltaEps = reg1_res.eps[1:] - reg1_res.eps[:-1]
-                # AIC?
-                reg2 = sm.OLS(deltaEps, reg1_res.eps[:-1])
-                reg2_res = reg2.fit()
+                # deltaEps = reg1_res.eps[1:] - reg1_res.eps[:-1]
+
+                reg2 = adfuller(reg1_res.eps, autolag='AIC', regression="nc")
                 
-                tstat = tstat.append([[group.iloc[i,0], group.iloc[j,0], reg2_res.tvalues]], ignore_index=True)
+                tstat = tstat.append([[group.iloc[i,0], group.iloc[j,0], reg2[0]]], ignore_index=True)
                 betas = betas.append([[group.iloc[i,0], group.iloc[j,0], reg1_res.beta[0]]], ignore_index=True)
                 epsilon = epsilon.append([[group.iloc[i,0], group.iloc[j,0], reg1_res.eps[-1]]], ignore_index=True)
                 sigma = sigma.append([[group.iloc[i,0], group.iloc[j,0], np.std(reg1_res.eps)]], ignore_index=True)
@@ -95,15 +105,15 @@ class DailyUpdate:
             
             if abs(e) > s:    # subject to change
                 ratio = float(betas[(betas[0] == tstat_sort.iloc[k,0]) & (betas[1] == tstat_sort.iloc[k,1])][2])
-                if e > 0:
-                    pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
-                                        [tstat_sort.iloc[k,1], industry, ratio]])
-                else:
-                    pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, 1],
-                                        [tstat_sort.iloc[k,1], industry, -ratio]])
-                found = True
-            else:
-                k += 1
+                if ratio > 0:
+                    if e > 0:
+                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
+                                            [tstat_sort.iloc[k,1], industry, ratio]])
+                    else:
+                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, 1],
+                                            [tstat_sort.iloc[k,1], industry, -ratio]])
+                    found = True
+            k += 1
         if found:
             return pair
         else:
@@ -115,3 +125,4 @@ class DailyUpdate:
 
     def __linearReg__(self, B, x):
         return B[0] * x + B[1]
+

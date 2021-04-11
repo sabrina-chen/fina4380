@@ -1,0 +1,638 @@
+﻿,Symbol,Industry Group
+0,AAPL,Technology Hardware & Equipment
+1,MSFT,Software & Services
+2,AMZN,Retailing
+4,GOOGL,Media & Entertainment
+5,GOOG,Media & Entertainment
+8,JPM,Banks
+9,JNJ,"Pharmaceuticals, Biotechnology & Life Sciences"
+10,V,Software & Services
+11,UNH,Health Care Equipment & Services
+12,NVDA,Semiconductors & Semiconductor Equipment
+13,DIS,Media & Entertainment
+14,HD,Retailing
+15,PG,Household & Personal Products
+16,MA,Software & Services
+17,BAC,Banks
+19,INTC,Semiconductors & Semiconductor Equipment
+20,CMCSA,Media & Entertainment
+21,VZ,Communication Services
+22,NFLX,Media & Entertainment
+23,XOM,Energy
+24,ADBE,Software & Services
+25,CSCO,Technology Hardware & Equipment
+26,T,Communication Services
+27,ABT,Health Care Equipment & Services
+28,KO,"Food, Beverage & Tobacco"
+29,CRM,Software & Services
+30,PFE,"Pharmaceuticals, Biotechnology & Life Sciences"
+31,CVX,Energy
+33,MRK,"Pharmaceuticals, Biotechnology & Life Sciences"
+34,PEP,"Food, Beverage & Tobacco"
+35,WMT,Food & Staples Retailing
+37,TMO,"Pharmaceuticals, Biotechnology & Life Sciences"
+38,TXN,Semiconductors & Semiconductor Equipment
+39,ACN,Software & Services
+40,MCD,Consumer Services
+41,NKE,Consumer Durables & Apparel
+42,WFC,Banks
+43,MDT,Health Care Equipment & Services
+44,COST,Food & Staples Retailing
+45,QCOM,Semiconductors & Semiconductor Equipment
+46,HON,Capital Goods
+47,C,Banks
+48,UNP,Transportation
+49,LIN,Materials
+50,NEE,Utilities
+51,LLY,"Pharmaceuticals, Biotechnology & Life Sciences"
+52,AMGN,"Pharmaceuticals, Biotechnology & Life Sciences"
+53,DHR,Health Care Equipment & Services
+54,BA,Capital Goods
+55,BMY,"Pharmaceuticals, Biotechnology & Life Sciences"
+56,LOW,Retailing
+57,PM,"Food, Beverage & Tobacco"
+58,ORCL,Software & Services
+59,AMAT,Semiconductors & Semiconductor Equipment
+60,SBUX,Consumer Services
+61,CAT,Capital Goods
+62,UPS,Transportation
+63,IBM,Software & Services
+64,RTX,Capital Goods
+65,GE,Capital Goods
+66,MS,Diversified Financials
+67,DE,Capital Goods
+68,MMM,Capital Goods
+69,GS,Diversified Financials
+70,BLK,Diversified Financials
+71,AMT,Real Estate
+72,INTU,Software & Services
+73,MU,Semiconductors & Semiconductor Equipment
+74,TGT,Retailing
+75,SCHW,Diversified Financials
+77,AMD,Semiconductors & Semiconductor Equipment
+78,BKNG,Consumer Services
+79,CVS,Health Care Equipment & Services
+80,AXP,Diversified Financials
+81,LRCX,Semiconductors & Semiconductor Equipment
+82,MO,"Food, Beverage & Tobacco"
+83,LMT,Capital Goods
+84,FIS,Software & Services
+85,ISRG,Health Care Equipment & Services
+87,SPGI,Diversified Financials
+88,ANTM,Health Care Equipment & Services
+90,CI,Health Care Equipment & Services
+92,GILD,"Pharmaceuticals, Biotechnology & Life Sciences"
+93,MDLZ,"Food, Beverage & Tobacco"
+94,ADP,Software & Services
+95,SYK,Health Care Equipment & Services
+96,TJX,Retailing
+97,PLD,Real Estate
+98,TFC,Banks
+100,USB,Banks
+101,TMUS,Communication Services
+102,CCI,Real Estate
+103,ATVI,Media & Entertainment
+104,PNC,Banks
+105,CSX,Transportation
+107,DUK,Utilities
+108,CME,Diversified Financials
+109,CB,Insurance
+110,BDX,Health Care Equipment & Services
+111,COP,Energy
+112,FISV,Software & Services
+113,NSC,Transportation
+114,FDX,Transportation
+115,EL,Household & Personal Products
+116,CL,Household & Personal Products
+118,SO,Utilities
+119,ITW,Capital Goods
+120,ICE,Diversified Financials
+121,APD,Materials
+122,ADSK,Software & Services
+123,MMC,Insurance
+124,SHW,Materials
+125,GPN,Software & Services
+126,EQIX,Real Estate
+127,COF,Diversified Financials
+128,D,Utilities
+129,ADI,Semiconductors & Semiconductor Equipment
+131,ETN,Capital Goods
+132,PGR,Insurance
+133,VRTX,"Pharmaceuticals, Biotechnology & Life Sciences"
+134,ILMN,"Pharmaceuticals, Biotechnology & Life Sciences"
+136,BSX,Health Care Equipment & Services
+137,EMR,Capital Goods
+138,KLAC,Semiconductors & Semiconductor Equipment
+139,ECL,Materials
+140,EW,Health Care Equipment & Services
+141,HUM,Health Care Equipment & Services
+142,AON,Insurance
+143,NOC,Capital Goods
+144,BX,Diversified Financials
+145,REGN,"Pharmaceuticals, Biotechnology & Life Sciences"
+146,WM,Commercial & Professional Services
+149,FCX,Materials
+151,MCO,Diversified Financials
+153,NEM,Materials
+154,F,Automobiles & Components
+157,KMB,Household & Personal Products
+158,MET,Insurance
+159,TEL,Technology Hardware & Equipment
+160,JCI,Capital Goods
+161,MCHP,Semiconductors & Semiconductor Equipment
+162,ROP,Capital Goods
+163,EXC,Utilities
+164,ROST,Retailing
+165,GD,Capital Goods
+166,BAX,Health Care Equipment & Services
+167,AEP,Utilities
+168,CTSH,Software & Services
+169,LHX,Capital Goods
+171,DD,Materials
+172,IDXX,Health Care Equipment & Services
+173,BIIB,"Pharmaceuticals, Biotechnology & Life Sciences"
+174,EOG,Energy
+175,APH,Technology Hardware & Equipment
+176,DLR,Real Estate
+177,EBAY,Retailing
+178,PH,Capital Goods
+179,CMG,Consumer Services
+180,EA,Media & Entertainment
+181,SYY,Food & Staples Retailing
+182,HPQ,Technology Hardware & Equipment
+183,MAR,Consumer Services
+184,SRE,Utilities
+185,CDNS,Software & Services
+186,WBA,Food & Staples Retailing
+187,AIG,Insurance
+188,TT,Capital Goods
+189,TROW,Diversified Financials
+191,A,"Pharmaceuticals, Biotechnology & Life Sciences"
+192,SNPS,Software & Services
+193,ALGN,Health Care Equipment & Services
+194,STZ,"Food, Beverage & Tobacco"
+195,PSA,Real Estate
+196,MTCH,Media & Entertainment
+197,BK,Diversified Financials
+198,SLB,Energy
+199,CMI,Capital Goods
+201,TRV,Insurance
+205,SPG,Real Estate
+206,GIS,"Food, Beverage & Tobacco"
+207,LUV,Transportation
+208,CNC,Health Care Equipment & Services
+209,XEL,Utilities
+210,PRU,Insurance
+212,MSCI,Diversified Financials
+213,PPG,Materials
+214,ALL,Insurance
+215,ORLY,Retailing
+216,DXCM,Health Care Equipment & Services
+217,LULU,Consumer Durables & Apparel
+222,GLW,Technology Hardware & Equipment
+225,IFF,Materials
+227,MNST,"Food, Beverage & Tobacco"
+228,MRVL,Semiconductors & Semiconductor Equipment
+229,ZBH,Health Care Equipment & Services
+230,ALXN,"Pharmaceuticals, Biotechnology & Life Sciences"
+231,CSGP,Commercial & Professional Services
+232,TDG,Capital Goods
+233,YUM,Consumer Services
+235,AFL,Insurance
+236,PAYX,Software & Services
+237,XLNX,Semiconductors & Semiconductor Equipment
+238,MSI,Technology Hardware & Equipment
+239,DAL,Transportation
+240,SWK,Capital Goods
+242,PCAR,Capital Goods
+244,ADM,"Food, Beverage & Tobacco"
+245,PXD,Energy
+246,CTAS,Commercial & Professional Services
+247,ANSS,Software & Services
+248,SWKS,Semiconductors & Semiconductor Equipment
+249,AZO,Retailing
+250,SBAC,Real Estate
+251,MCK,Health Care Equipment & Services
+252,ROK,Capital Goods
+253,VLO,Energy
+254,AME,Capital Goods
+255,PEG,Utilities
+256,WLTW,Insurance
+257,WELL,Real Estate
+258,ES,Utilities
+259,DFS,Diversified Financials
+260,STT,Diversified Financials
+263,DHI,Consumer Durables & Apparel
+264,FAST,Capital Goods
+265,WEC,Utilities
+266,LEN,Consumer Durables & Apparel
+267,WMB,Energy
+269,BLL,Materials
+270,RMD,Health Care Equipment & Services
+272,DLTR,Retailing
+273,AWK,Utilities
+274,MTD,"Pharmaceuticals, Biotechnology & Life Sciences"
+276,KR,Food & Staples Retailing
+277,CBRE,Real Estate
+278,WY,Real Estate
+282,BBY,Retailing
+284,FITB,Banks
+285,ZBRA,Technology Hardware & Equipment
+286,AMP,Diversified Financials
+287,SIVB,Banks
+288,VFC,Consumer Durables & Apparel
+290,AVB,Real Estate
+291,DTE,Utilities
+292,MXIM,Semiconductors & Semiconductor Equipment
+294,ED,Utilities
+295,VIAC,Media & Entertainment
+296,AJG,Insurance
+297,LH,Health Care Equipment & Services
+298,EQR,Real Estate
+300,KSU,Transportation
+302,EXPE,Consumer Services
+303,O,Real Estate
+304,URI,Capital Goods
+307,ODFL,Transportation
+308,HIG,Insurance
+309,NUE,Materials
+312,HSY,"Food, Beverage & Tobacco"
+313,CPRT,Commercial & Professional Services
+318,VMC,Materials
+319,CERN,Health Care Equipment & Services
+320,EFX,Commercial & Professional Services
+321,OKE,Energy
+322,CLX,Household & Personal Products
+324,PPL,Utilities
+325,EXAS,"Pharmaceuticals, Biotechnology & Life Sciences"
+326,NTRS,Diversified Financials
+327,CCL,Consumer Services
+328,EIX,Utilities
+329,TSN,"Food, Beverage & Tobacco"
+330,MKC,"Food, Beverage & Tobacco"
+331,ARE,Real Estate
+332,TER,Semiconductors & Semiconductor Equipment
+333,CHD,Household & Personal Products
+334,WDC,Technology Hardware & Equipment
+335,WST,Health Care Equipment & Services
+336,IP,Materials
+337,RSG,Commercial & Professional Services
+338,OXY,Energy
+339,MLM,Materials
+344,TTWO,Media & Entertainment
+345,TRMB,Technology Hardware & Equipment
+346,VRSN,Software & Services
+347,GRMN,Consumer Durables & Apparel
+348,KMX,Retailing
+349,TSCO,Retailing
+350,LVS,Consumer Services
+352,RF,Banks
+353,AEE,Utilities
+354,KDP,"Food, Beverage & Tobacco"
+355,DOV,Capital Goods
+357,ETR,Utilities
+360,MTB,Banks
+362,VTR,Real Estate
+363,TFX,Health Care Equipment & Services
+364,RCL,Consumer Services
+365,MKTX,Diversified Financials
+366,KEY,Banks
+368,HOLX,Health Care Equipment & Services
+369,HES,Energy
+370,FE,Utilities
+371,IAC,Media & Entertainment
+374,UAL,Transportation
+377,HAL,Energy
+379,COO,Health Care Equipment & Services
+380,AES,Utilities
+383,CAG,"Food, Beverage & Tobacco"
+384,BR,Software & Services
+385,WAT,"Pharmaceuticals, Biotechnology & Life Sciences"
+386,DRI,Consumer Services
+388,EXPD,Transportation
+389,SGEN,"Pharmaceuticals, Biotechnology & Life Sciences"
+390,TYL,Software & Services
+391,ESS,Real Estate
+392,ON,Semiconductors & Semiconductor Equipment
+394,ULTA,Retailing
+397,CMS,Utilities
+398,CTXS,Software & Services
+399,CAH,Health Care Equipment & Services
+400,PEAK,Real Estate
+401,GWW,Capital Goods
+402,CE,Materials
+403,ALB,Materials
+404,ABC,Health Care Equipment & Services
+405,J,Commercial & Professional Services
+406,PODD,Health Care Equipment & Services
+407,SUI,Real Estate
+408,NDAQ,Diversified Financials
+409,MGM,Consumer Services
+410,EXR,Real Estate
+412,IT,Software & Services
+414,PCG,Utilities
+415,PLUG,Capital Goods
+416,GPC,Retailing
+417,MAA,Real Estate
+418,STE,Health Care Equipment & Services
+419,VTRS,"Pharmaceuticals, Biotechnology & Life Sciences"
+420,DGX,Health Care Equipment & Services
+421,AKAM,Software & Services
+422,IEX,Capital Goods
+423,LNG,Energy
+424,NVR,Consumer Durables & Apparel
+425,NTAP,Technology Hardware & Equipment
+427,ALNY,"Pharmaceuticals, Biotechnology & Life Sciences"
+429,OMC,Media & Entertainment
+430,HBAN,Banks
+432,K,"Food, Beverage & Tobacco"
+433,MKL,Insurance
+434,ACGL,Insurance
+435,ENTG,Semiconductors & Semiconductor Equipment
+436,CINF,Insurance
+437,VAR,Health Care Equipment & Services
+438,RJF,Diversified Financials
+439,AVY,Materials
+441,MAS,Capital Goods
+442,MPWR,Semiconductors & Semiconductor Equipment
+443,PENN,Consumer Services
+444,STX,Technology Hardware & Equipment
+445,DRE,Real Estate
+446,INCY,"Pharmaceuticals, Biotechnology & Life Sciences"
+447,PTC,Software & Services
+448,TECH,"Pharmaceuticals, Biotechnology & Life Sciences"
+450,TDY,Capital Goods
+451,AAL,Transportation
+453,BKR,Energy
+454,EMN,Materials
+455,BXP,Real Estate
+456,PFG,Insurance
+457,CRL,"Pharmaceuticals, Biotechnology & Life Sciences"
+459,PKI,"Pharmaceuticals, Biotechnology & Life Sciences"
+460,CGNX,Technology Hardware & Equipment
+461,ABMD,Health Care Equipment & Services
+462,FICO,Software & Services
+463,LB,Retailing
+464,PHM,Consumer Durables & Apparel
+465,DPZ,Consumer Services
+466,FMC,Materials
+467,WSM,Retailing
+468,BMRN,"Pharmaceuticals, Biotechnology & Life Sciences"
+470,WHR,Consumer Durables & Apparel
+471,JBHT,Transportation
+472,WAB,Capital Goods
+474,EVRG,Utilities
+475,LNT,Utilities
+477,SJM,"Food, Beverage & Tobacco"
+478,POOL,Retailing
+480,WYNN,Consumer Services
+482,XRAY,Health Care Equipment & Services
+487,CCK,Materials
+488,HRL,"Food, Beverage & Tobacco"
+491,MOH,Health Care Equipment & Services
+493,UDR,Real Estate
+494,LUMN,Communication Services
+495,SBNY,Banks
+496,CREE,Semiconductors & Semiconductor Equipment
+497,PWR,Capital Goods
+498,NLOK,Software & Services
+499,CHRW,Transportation
+500,DVN,Energy
+501,FFIV,Technology Hardware & Equipment
+503,LDOS,Commercial & Professional Services
+504,TXT,Capital Goods
+505,SNA,Capital Goods
+506,ATO,Utilities
+507,NUAN,Software & Services
+508,XPO,Transportation
+510,PKG,Materials
+511,WPC,Real Estate
+512,CNP,Utilities
+513,GGG,Capital Goods
+514,HWM,Capital Goods
+515,HST,Real Estate
+516,LYV,Media & Entertainment
+517,BIO,"Pharmaceuticals, Biotechnology & Life Sciences"
+518,MPW,Real Estate
+520,LKQ,Retailing
+521,RPM,Materials
+523,TPL,Energy
+524,HAS,Consumer Durables & Apparel
+525,VMW,Software & Services
+526,FDS,Diversified Financials
+527,L,Insurance
+528,NLY,Diversified Financials
+529,NVAX,"Pharmaceuticals, Biotechnology & Life Sciences"
+530,MASI,Health Care Equipment & Services
+531,FNF,Insurance
+533,DAR,"Food, Beverage & Tobacco"
+536,MTN,Consumer Services
+537,AAP,Retailing
+538,JKHY,Software & Services
+539,IPG,Media & Entertainment
+541,BWA,Automobiles & Components
+542,TPR,Consumer Durables & Apparel
+544,TTC,Capital Goods
+545,MHK,Consumer Durables & Apparel
+548,LNC,Insurance
+549,BG,"Food, Beverage & Tobacco"
+550,TREX,Capital Goods
+551,ELS,Real Estate
+552,SAM,"Food, Beverage & Tobacco"
+553,MOS,Materials
+554,BRO,Insurance
+555,IRM,Real Estate
+556,LII,Capital Goods
+558,CPT,Real Estate
+562,NDSN,Capital Goods
+564,AZPN,Software & Services
+565,OLED,Semiconductors & Semiconductor Equipment
+567,NWL,Consumer Durables & Apparel
+568,UHS,Health Care Equipment & Services
+569,EWBC,Banks
+570,WRB,Insurance
+571,WTRG,Utilities
+572,LAD,Retailing
+573,MKSI,Semiconductors & Semiconductor Equipment
+575,DISCK,Media & Entertainment
+576,RGEN,"Pharmaceuticals, Biotechnology & Life Sciences"
+579,CPB,"Food, Beverage & Tobacco"
+580,HUBB,Capital Goods
+582,GME,Retailing
+583,STLD,Materials
+584,OC,Capital Goods
+585,WU,Software & Services
+587,FHN,Banks
+588,PNR,Capital Goods
+590,CMA,Banks
+591,NI,Utilities
+592,ACM,Capital Goods
+594,SMG,Materials
+595,TAP,"Food, Beverage & Tobacco"
+596,HSIC,Health Care Equipment & Services
+598,WAL,Banks
+600,RE,Insurance
+604,AXON,Capital Goods
+605,RS,Materials
+606,JLL,Real Estate
+607,PNW,Utilities
+608,BLDR,Capital Goods
+610,IVZ,Diversified Financials
+611,KSS,Retailing
+612,ZION,Banks
+614,CF,Materials
+616,GL,Insurance
+617,AGCO,Capital Goods
+618,CLF,Materials
+621,WEX,Software & Services
+623,DECK,Consumer Durables & Apparel
+624,AMED,Health Care Equipment & Services
+625,GNTX,Automobiles & Components
+626,RHI,Commercial & Professional Services
+627,LBTYK,Communication Services
+628,MIDD,Capital Goods
+629,MRO,Energy
+631,ATR,Materials
+633,NRG,Utilities
+634,JAZZ,"Pharmaceuticals, Biotechnology & Life Sciences"
+636,WSO,Capital Goods
+637,Y,Insurance
+638,CIEN,Technology Hardware & Equipment
+639,OHI,Real Estate
+640,DISH,Media & Entertainment
+641,ALK,Transportation
+642,AOS,Capital Goods
+643,RNR,Insurance
+645,CSL,Capital Goods
+646,UGI,Utilities
+650,REG,Real Estate
+651,AGNC,Diversified Financials
+652,RGA,Insurance
+653,NBIX,"Pharmaceuticals, Biotechnology & Life Sciences"
+654,SCI,Consumer Services
+655,KIM,Real Estate
+657,ARW,Technology Hardware & Equipment
+658,LAMR,Real Estate
+660,UTHR,"Pharmaceuticals, Biotechnology & Life Sciences"
+661,BEN,Diversified Financials
+662,AFG,Insurance
+663,CASY,Food & Staples Retailing
+666,CBSH,Banks
+667,CHDN,Consumer Services
+672,ITT,Capital Goods
+673,CUBE,Real Estate
+675,EHC,Health Care Equipment & Services
+676,IIVI,Technology Hardware & Equipment
+677,DVA,Health Care Equipment & Services
+678,JNPR,Technology Hardware & Equipment
+679,IPGP,Technology Hardware & Equipment
+681,ROL,Commercial & Professional Services
+683,NNN,Real Estate
+685,OSK,Capital Goods
+686,G,Software & Services
+688,PII,Consumer Durables & Apparel
+689,AIZ,Insurance
+690,EEFT,Software & Services
+691,SEIC,Diversified Financials
+692,ALV,Automobiles & Components
+693,LECO,Capital Goods
+694,FLIR,Technology Hardware & Equipment
+696,MANH,Software & Services
+697,PVH,Consumer Durables & Apparel
+699,HRC,Health Care Equipment & Services
+701,DXC,Software & Services
+702,TCF,Banks
+704,TTEK,Commercial & Professional Services
+705,THO,Automobiles & Components
+706,CHE,Health Care Equipment & Services
+708,NYT,Media & Entertainment
+709,BC,Consumer Durables & Apparel
+711,DCI,Capital Goods
+712,EXEL,"Pharmaceuticals, Biotechnology & Life Sciences"
+718,FRT,Real Estate
+719,LSCC,Semiconductors & Semiconductor Equipment
+720,COG,Energy
+722,FSLR,Semiconductors & Semiconductor Equipment
+723,PBCT,Banks
+725,SEE,Materials
+726,VNO,Real Estate
+727,RGLD,Materials
+728,BRKR,"Pharmaceuticals, Biotechnology & Life Sciences"
+730,KRC,Real Estate
+731,MAT,Consumer Durables & Apparel
+732,HBI,Consumer Durables & Apparel
+733,PNFP,Banks
+734,SF,Diversified Financials
+738,SNV,Banks
+739,FFIN,Banks
+740,BRKS,Semiconductors & Semiconductor Equipment
+742,PB,Banks
+745,LSI,Real Estate
+747,TOL,Consumer Durables & Apparel
+748,SIRI,Media & Entertainment
+750,ARWR,"Pharmaceuticals, Biotechnology & Life Sciences"
+751,JBL,Technology Hardware & Equipment
+754,TPX,Consumer Durables & Apparel
+755,WWD,Capital Goods
+756,MDU,Utilities
+757,LFUS,Technology Hardware & Equipment
+759,COHR,Technology Hardware & Equipment
+762,IONS,"Pharmaceuticals, Biotechnology & Life Sciences"
+763,CACI,Commercial & Professional Services
+766,DISCA,Media & Entertainment
+767,DLB,Technology Hardware & Equipment
+770,SLAB,Semiconductors & Semiconductor Equipment
+771,AMG,Diversified Financials
+772,OGE,Utilities
+774,LPX,Materials
+775,GPS,Retailing
+777,INGR,"Food, Beverage & Tobacco"
+779,APA,Energy
+781,SON,Materials
+783,NXST,Media & Entertainment
+784,LHCG,Health Care Equipment & Services
+786,EME,Capital Goods
+788,JBLU,Transportation
+790,OVV,Energy
+791,LSTR,Transportation
+792,LEG,Consumer Durables & Apparel
+793,FCNCA,Banks
+794,X,Materials
+797,SAIA,Transportation
+798,TXRH,Consumer Services
+800,XEC,Energy
+801,HOG,Automobiles & Components
+802,EGP,Real Estate
+803,HUN,Materials
+805,FR,Real Estate
+806,CLGX,Commercial & Professional Services
+807,NYCB,Banks
+808,FL,Retailing
+810,TKR,Capital Goods
+811,NATI,Technology Hardware & Equipment
+812,APPS,Software & Services
+814,SLM,Diversified Financials
+815,UNM,Insurance
+816,AA,Materials
+817,SRPT,"Pharmaceuticals, Biotechnology & Life Sciences"
+818,NEO,"Pharmaceuticals, Biotechnology & Life Sciences"
+819,EVR,Diversified Financials
+820,OLN,Materials
+821,IBKR,Diversified Financials
+822,ORI,Insurance
+823,SRCL,Commercial & Professional Services
+824,ACC,Real Estate
+825,HAE,Health Care Equipment & Services
+826,MTZ,Capital Goods
+827,VLY,Banks
+828,JEF,Diversified Financials
+830,CFR,Banks
+831,MMS,Software & Services
+834,RBC,Capital Goods
+835,KNX,Transportation
+836,AYI,Capital Goods
+837,THC,Health Care Equipment & Services
+838,SKX,Consumer Durables & Apparel
+839,OMCL,Health Care Equipment & Services
+840,TNL,Consumer Services
+841,RL,Consumer Durables & Apparel

@@ -36,15 +36,16 @@ class Portfolio:
         self.values = pd.DataFrame()    # update everyday
         for industry, group in self.portweight.groupby([1]):
             share = self.__calShare__(industry)
-            shareFrame = pd.DataFrame(np.vstack(([group.iloc[0,0], group.iloc[1,0]], [industry]*2, [int(i) for i in share])).T)
+            shareFrame = pd.DataFrame(np.vstack(([group.iloc[0,0], group.iloc[1,0]], [industry]*2, share)).T)
             self.shares = self.shares.append(shareFrame, ignore_index=True)
-            self.shares[2] = self.shares[2].astype(int)
+            self.shares[2] = self.shares[2].astype(float)
             self.values = self.values.append(pd.DataFrame(np.vstack((group[0], [industry]*2, self.__calValue__(industry, True))).T), ignore_index=True)
         
         self.margin = -self.values[self.values[2] < 0].to_numpy()[:,2] // self.lev    # update if change in portweight
         self.borrCash = self.values[self.values[2] > 0].to_numpy()[:,2] // self.lev    # update if change in portweight
         self.cash = self.NAV + self.borrCash.sum() + abs(self.values[self.values[2] < 0][2].sum()) - self.values[self.values[2] > 0][2].sum() - self.margin.sum() - self.proceed.sum()    # cash remained after long-short due to integer number of shares
-
+        # self.cash = self.NAV + abs(self.values[self.values[2] < 0][2].sum()) - self.values[self.values[2] > 0][2].sum() - self.margin.sum()    # cash remained after long-short due to integer number of shares
+        # self.cash = self.NAV + abs(self.values[self.values[2] < 0][2].sum()) - self.margin.sum()
 
 
     def __calShare__(self, industry):
@@ -58,12 +59,14 @@ class Portfolio:
         wB = weight.iloc[1,2]
         PA = self.price[weight.iloc[0,0]].iloc[-1]
         PB = self.price[weight.iloc[1,0]].iloc[-1]
-        if PA * wA + PB * wB < 0:
+        
+        if (PA * wA + PB * wB) < 0:
             k = total / (abs(PA * wA) + abs(PB * wB))
         else:
             k = total / (PA * wA + PB * wB)
-        shares = np.array([int(wA*k), int(wB*k)])
+        shares = np.array([(wA*k), (wB*k)])
         # shareFrame = pd.DataFrame(np.vstack(([weight.iloc[0,0], weight.iloc[0,1]], [industry]*2, shares)).T)
+        
         return shares
 
     
@@ -72,13 +75,13 @@ class Portfolio:
         Calculate market values of stocks in specific industry of current portfolio based on lastest price
         """
         indusshare = self.shares.groupby([1]).get_group(industry)
-        PA = float(self.price[indusshare.iloc[0,0]].iloc[-1])
-        PB = float(self.price[indusshare.iloc[1,0]].iloc[-1])
+        PA = float(self.price[indusshare.iloc[0,0]][-1])
+        PB = float(self.price[indusshare.iloc[1,0]][-1])
         share = indusshare.iloc[:,2].to_numpy()
         values = np.array([PA*float(share[0]), PB*float(share[1])])
         if update:
             if values.sum() < 0:
-                self.proceed[int(self.portweight[self.portweight[1]==industry].index[0]/2)] += values[values>0]/2 + abs(values[values<0])
+                self.proceed[int(self.portweight[self.portweight[1]==industry].index[0]/2)] = -values[values>0].item()/2 + abs(values[values<0].item())
             else:
                 self.proceed[int(self.portweight[self.portweight[1]==industry].index[0]/2)] = 0
         return values
@@ -111,12 +114,12 @@ class Portfolio:
                 newValue = self.__calValue__(industry, True)
                 self.values.iloc[(2*k):(2*k+2),2] = newValue    # update market value of stocks in industry
 
-                self.margin[k] = newValue[newValue < 0].item() / self.lev    # update if change in portweight
+                self.margin[k] = oldnav * 0.3    # newValue[newValue < 0].item() / self.lev    # update if change in portweight
                 self.borrCash[k] = newValue[newValue > 0].item() / self.lev    # update if change in portweight
-                newnav = newprice[newPort_ind.iloc[0,0]] * newShare[0] + newprice[newPort_ind.iloc[1,0]] * newShare[1] + self.margin[k] - self.borrCash[k]
+                newnav = newprice[newPort_ind.iloc[0,0]][0] * newShare[0] + newprice[newPort_ind.iloc[1,0]][0] * newShare[1] + self.margin[k] - self.borrCash[k]
                 self.groupNAV[industry] = newnav
                 self.cash = oldnav + self.cash - newnav    # cash remained after long-short due to integer number of shares
-            
+
             k += 1
                 
         self.NAV = self.groupNAV.sum() + self.cash

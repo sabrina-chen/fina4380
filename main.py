@@ -23,30 +23,30 @@ priceUse.index = pd.to_datetime(priceUse.index)
 
 start = priceUse.index.searchsorted(datetime.datetime(2016, 1, 1))
 k = 0
-# day = 0
 tmp = pd.read_csv("./newport.csv", index_col=0)
 portlog = tmp["1"].to_frame()
 portlog.columns = [0]
-portlog.join(pd.DataFrame(tmp.drop(["1"], axis=1).to_numpy(), columns=[3,4]))
 
 k = 0
-for day in range(1,3):
+for day in range(30):
     cumret = (np.log(priceUse.iloc[start+day-250:start+day,:]) - np.log(priceUse.iloc[start+day-250,:]))
     if day == 0:
         todayPortUpdate = DailyUpdate(cumret, tradeTickers)
     else:
-        todayPortUpdate = DailyUpdate(cumret, tradeTickers, newport)
+        todayPortUpdate = DailyUpdate(cumret, tradeTickers, newport, startEpsilon)
     todayPortUpdate.rebalancing()
-    newport = todayPortUpdate.getUpdatedPort()
+    newport = todayPortUpdate.getUpdatedPort().copy()
     newport.columns = [0, 1, 2]
+    startEpsilon = todayPortUpdate.startEpsilon.copy()
     portlog = portlog.join(pd.DataFrame(newport.drop([1], axis=1).to_numpy(), columns=[2*k+1, 2*k+2]))
     portlog.to_csv("./portlog.csv")
     if k == 0:
-        tradePortfolio = Portfolio(tradeTickers, 10000000, priceUse.iloc[start+day,:].to_frame(), newport, priceUse.index[start], 2)
+        tradePortfolio = Portfolio(tradeTickers, 10000000, priceUse.iloc[start+day,:].to_frame(), newport.copy(), priceUse.index[start], 2)
     else:
-        tradePortfolio.updatePortfolio(priceUse.iloc[start+day,:].to_frame().T, newport)
+        tradePortfolio.updatePortfolio(priceUse.iloc[start+day,:].to_frame().T, newport.copy())
     tradePortfolio.NAVlog.to_csv("./NAVlog.csv")
     k += 1
+
 
 print(tradePortfolio.NAVlog)
 NAVlog = pd.read_csv("./NAVlog.csv", index_col=True)

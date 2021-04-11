@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from DailyUpdate import DailyUpdate
 from Portfolio import Portfolio
+from Performance import Performance
 import datetime
 
 
@@ -48,6 +49,10 @@ for day in range(1,3):
     k += 1
 
 print(tradePortfolio.NAVlog)
+NAVlog = pd.read_csv("./NAVlog.csv", index_col=True)
+portfolio = Performance(NAV=NAVlog)
+Performance.analyze(self=portfolio, rf=0.017)
+Performance.plotting(self=portfolio, symbol='sp500')
 
 
 ##### for debug

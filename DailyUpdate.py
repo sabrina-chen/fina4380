@@ -32,7 +32,7 @@ class DailyUpdate:
         self.newPort = pd.DataFrame()
         
         if startEpsilon is None:
-            self.startEpsilon = pd.Series([0]*24, index=self.tickers.size().index)    # update everyday
+            self.startEpsilon = pd.Series([0.0]*24, index=self.tickers.size().index)    # update everyday
         else:
             self.startEpsilon = startEpsilon
 
@@ -70,7 +70,7 @@ class DailyUpdate:
                     reg2_res = reg2.fit()
                     et = reg1_res.eps[-1]
                     e0 = self.startEpsilon[industry]
-                    if reg2_res.tvalues > -3 or (abs(et - e0) > np.sqrt(reg1_res.res_var)):    # np.sqrt(reg1_res.res_var) / 10 < reg1_res.eps[-1] < -np.sqrt(reg1_res.res_var) / 10) or abs(reg1_res.eps[-1]) > np.sqrt(reg1_res.res_var) * 2.5:
+                    if reg2_res.tvalues > -3 or (abs(et - e0) > np.sqrt(reg1_res.res_var) * 2):    # np.sqrt(reg1_res.res_var) / 10 < reg1_res.eps[-1] < -np.sqrt(reg1_res.res_var) / 10) or abs(reg1_res.eps[-1]) > np.sqrt(reg1_res.res_var) * 2.5:
                         print("finding newpair: "+industry)
                         newpair = self.findPair(industry)
                         self.newPort = self.newPort.append(newpair, ignore_index=True)
@@ -127,16 +127,17 @@ class DailyUpdate:
                 ratio = float(betas[(betas[0] == tstat_sort.iloc[k,0]) & (betas[1] == tstat_sort.iloc[k,1])][2])
                 if ratio > 0:
                     if e > 0:
-                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
-                                            [tstat_sort.iloc[k,1], industry, ratio]])
-                    else:
                         pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, 1],
                                             [tstat_sort.iloc[k,1], industry, -ratio]])
+                    else:
+                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
+                                            [tstat_sort.iloc[k,1], industry, ratio]])
                     found = True
                     print(tstat_sort.iloc[k,2])
             k += 1
         if found:
-            self.startEpsilon[industry] = e
+            print(e)
+            self.startEpsilon[industry] = float(e)
             return pair
         else:
             print("No pairs found!")
@@ -148,4 +149,7 @@ class DailyUpdate:
 
     def __linearReg__(self, B, x):
         return B[0] * x + B[1]
+
+    def TLS(self, x, y):
+        
 

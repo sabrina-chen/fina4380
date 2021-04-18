@@ -20,7 +20,7 @@ class Performance:
         nav = np.array(self.nav)
         cr = nav[-1] / nav[0] - 1
         ar = (nav[-1] / nav[0]) ** (250 / len(nav)) - 1
-        ann_vol = nav.std() * 16
+        ann_vol = nav.pct_.std() * 16
         asr = (ar - rf) / ann_vol
         drawdown = []
         i = 1
@@ -37,6 +37,11 @@ class Performance:
               "Max drawdown: " + str(md),
               "Calmer ratio: " + str(calmer_ratio),
               sep="\n")
+
+        self.drawdown = pd.Series(drawdown, index=self.nav.index)
+        plt.plot(self.drawdown)
+        plt.show()
+
 
     def plotting(self):
         # compared with S&P500

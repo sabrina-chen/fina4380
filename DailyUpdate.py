@@ -43,6 +43,8 @@ class DailyUpdate:
             self.startEpsilon = startEpsilon.copy()
             self.startDay = startDay.copy()
 
+        self.ADFthreshold = -3
+        self.ASRthreshold = 1
         
 
     def rebalancing(self):
@@ -65,15 +67,20 @@ class DailyUpdate:
                     newpair = self.findPair(industry)
                     self.newPort = self.newPort.append(newpair, ignore_index=True)
                 else:
-                    cumlogRet = np.log(self.price.iloc[self.startDay[industry]:,:]) - np.log(self.price.iloc[self.startDay[industry],:])
+                    cumlogRet = np.log(self.price.iloc[-250:,:]) - np.log(self.price.iloc[-250,:])
                     reg1_beta, reg1_eps = self.TLS(cumlogRet[group.iloc[0,0]], cumlogRet[group.iloc[1,0]])
                     reg2 = adfuller(reg1_eps, autolag='AIC', regression="nc")
                     et = reg1_eps[-1]
                     e0 = self.startEpsilon[industry]
                     s = np.std(reg1_eps)
+                    ASR = abs(reg1_eps[-1] / s)
+                    ADF = reg2[0]
+                    ps = ASR ** (self.ADFthreshold - ADF)
 
-                    if reg2[0] > -3 or (e0 < 0 and (et > e0 + s or et < e0 - 0.5*s)) or (e0 > 0 and (et < e0 - s or et > e0 + 0.5*s)):
+                    if ADF > -2.5 or (e0 < 0 and (et > abs(e0)/2)) or (e0 > 0 and (et < -e0/2)):
                         print("finding newpair: " + industry)
+                        print(f"Closed: ADF = {ADF}\tet = {et}")
+                        
                         newpair = self.findPair(industry)
                         self.newPort = self.newPort.append(newpair, ignore_index=True)
                     else:
@@ -108,6 +115,8 @@ class DailyUpdate:
         betas = pd.DataFrame()
         epsilon = pd.DataFrame()
         sigma = pd.DataFrame()
+        PS = pd.DataFrame()
+
         k = 0
         same = 0
         for i in range(n - 1):
@@ -119,10 +128,16 @@ class DailyUpdate:
                     reg1_beta, reg1_eps = self.TLS(cumlogRet[group.iloc[i,0]], cumlogRet[group.iloc[j,0]])
                     reg2 = adfuller(reg1_eps, autolag='AIC', regression="nc")
 
-                    tstat = tstat.append([[group.iloc[i,0], group.iloc[j,0], reg2[0]]], ignore_index=True)
+                    s = np.std(reg1_eps)
+                    ASR = abs(reg1_eps[-1] / s)
+                    ADF = reg2[0]
+                    ps = ASR ** (self.ADFthreshold - ADF)
+
+                    tstat = tstat.append([[group.iloc[i,0], group.iloc[j,0], ADF]], ignore_index=True)
                     betas = betas.append([[group.iloc[i,0], group.iloc[j,0], reg1_beta[1]]], ignore_index=True)
                     epsilon = epsilon.append([[group.iloc[i,0], group.iloc[j,0], reg1_eps[-1]]], ignore_index=True)
-                    sigma = sigma.append([[group.iloc[i,0], group.iloc[j,0], np.std(reg1_eps)]], ignore_index=True)
+                    sigma = sigma.append([[group.iloc[i,0], group.iloc[j,0], s]], ignore_index=True)
+                    PS = PS.append([[group.iloc[i,0], group.iloc[j,0], ps]], ignore_index=True)
 
                     # linear = odr.Model(self.__linearReg__)
                     # datafit = odr.Data(self.cumlogRet[group.iloc[i,0]], self.cumlogRet[group.iloc[j,0]])
@@ -136,27 +151,46 @@ class DailyUpdate:
                     # epsilon = epsilon.append([[group.iloc[i,0], group.iloc[j,0], reg1_res.eps[-1]]], ignore_index=True)
                     # sigma = sigma.append([[group.iloc[i,0], group.iloc[j,0], np.std(reg1_res.eps)]], ignore_index=True)
                 k += 1
-        tstat_sort = tstat.sort_values([2])
+        # tstat_sort = tstat.sort_values([2])
+        PS_sort = PS.sort_values([2], ascending=False)
         found = False
         k = 0
         n_pair = n * (n-1) / 2 - same
         
-        while tstat_sort.iloc[k,2] < -3 and k < n_pair and not found:
-            e = float(epsilon[(epsilon[0] == tstat_sort.iloc[k,0]) & (epsilon[1] == tstat_sort.iloc[k,1])][2])
-            s = float(sigma[(sigma[0] == tstat_sort.iloc[k,0]) & (sigma[1] == tstat_sort.iloc[k,1])][2])
+        while k < n_pair and not found:
+            e = float(epsilon[(epsilon[0] == PS_sort.iloc[k,0]) & (epsilon[1] == PS_sort.iloc[k,1])][2])
+            adf = float(tstat[(tstat[0] == PS_sort.iloc[k,0]) & (tstat[1] == PS_sort.iloc[k,1])][2])
+            s = float(sigma[(sigma[0] == PS_sort.iloc[k,0]) & (sigma[1] == PS_sort.iloc[k,1])][2])
             
-            if 2*s > abs(e) > s:    # subject to change
-                ratio = float(betas[(betas[0] == tstat_sort.iloc[k,0]) & (betas[1] == tstat_sort.iloc[k,1])][2])
+            if adf < self.ADFthreshold and abs(e / s) > self.ASRthreshold:
+                ratio = float(betas[(betas[0] == PS_sort.iloc[k,0]) & (betas[1] == PS_sort.iloc[k,1])][2])
                 if ratio > 0:
                     if e > 0:
-                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, 1],
-                                            [tstat_sort.iloc[k,1], industry, -ratio]])
+                        pair = pd.DataFrame([[PS_sort.iloc[k,0], industry, 1],
+                                            [PS_sort.iloc[k,1], industry, -ratio]])
                     else:
-                        pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
-                                            [tstat_sort.iloc[k,1], industry, ratio]])
+                        pair = pd.DataFrame([[PS_sort.iloc[k,0], industry, -1],
+                                            [PS_sort.iloc[k,1], industry, ratio]])
                     found = True
-                    print(tstat_sort.iloc[k,2])
+                    print(PS_sort.iloc[k,2])
             k += 1
+        
+        # while tstat_sort.iloc[k,2] < -2.5 and k < n_pair and not found:
+        #     e = float(epsilon[(epsilon[0] == tstat_sort.iloc[k,0]) & (epsilon[1] == tstat_sort.iloc[k,1])][2])
+        #     s = float(sigma[(sigma[0] == tstat_sort.iloc[k,0]) & (sigma[1] == tstat_sort.iloc[k,1])][2])
+            
+        #     if 3.5*s > abs(e) > 2.5*s:    # subject to change
+        #         ratio = float(betas[(betas[0] == tstat_sort.iloc[k,0]) & (betas[1] == tstat_sort.iloc[k,1])][2])
+        #         if ratio > 0:
+        #             if e > 0:
+        #                 pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, 1],
+        #                                     [tstat_sort.iloc[k,1], industry, -ratio]])
+        #             else:
+        #                 pair = pd.DataFrame([[tstat_sort.iloc[k,0], industry, -1],
+        #                                     [tstat_sort.iloc[k,1], industry, ratio]])
+        #             found = True
+        #             print(tstat_sort.iloc[k,2])
+        #     k += 1
         if found:
             print(e)
             self.startEpsilon[industry] = float(e)

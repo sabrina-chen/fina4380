@@ -22,6 +22,11 @@ class Performance:
         cr = nav[-1] / nav[0] - 1
         ar = (nav[-1] / nav[0]) ** (250 / len(nav)) - 1
         daily_return = np.array(self.daily_return)
+        negative_return = []
+        for returns in daily_return[1:]:
+            if returns < 0:
+                negative_return.append(returns)
+        sr = (ar-rf)/np.array(negative_return).std()
         ann_vol = daily_return[1:].std() * 16
         asr = (ar - rf) / ann_vol
         drawdown = []
@@ -36,6 +41,7 @@ class Performance:
               "Annualized geometric return: " + str(ar),
               "Annualized std. : " + str(ann_vol),
               "Annualized Sharpe Ratio: " + str(asr),
+              "Sortino Ratio: " + str(sr),
               "Max drawdown: " + str(md),
               "Calmer ratio: " + str(calmer_ratio),
               sep="\n")

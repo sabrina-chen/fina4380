@@ -7,8 +7,8 @@ from matplotlib import pyplot as plt
 from Performance import Performance
 
 
-startyear = 2019
-nindustry = 20
+startyear = 2020
+nindustry = 24
 
 tradeTickers = pd.read_csv(f"./tradeTickers_filtered_{nindustry}industries.csv", index_col=0)
 # tradeTickers

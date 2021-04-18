@@ -8,6 +8,7 @@ from matplotlib.dates import DateFormatter, MonthLocator
 class Performance:
     def __init__(self, NAV):
         self.nav = NAV
+        self.daily_return = NAV.pct_change()
 
     def printarray(self):
         print(np.array(self.nav).shape)
@@ -20,7 +21,8 @@ class Performance:
         nav = np.array(self.nav)
         cr = nav[-1] / nav[0] - 1
         ar = (nav[-1] / nav[0]) ** (250 / len(nav)) - 1
-        ann_vol = nav.pct_.std() * 16
+        daily_return = np.array(self.daily_return)
+        ann_vol = daily_return[1:].std() * 16
         asr = (ar - rf) / ann_vol
         drawdown = []
         i = 1
@@ -28,7 +30,7 @@ class Performance:
             a = (nav[i-1] / np.amax(nav[0:i])) - 1
             drawdown.append(a)
             i += 1
-        md = np.amin(drawdown)
+        md = (np.amax(nav)-np.amin(nav))/np.amax(nav)
         calmer_ratio = ar / md
         print("Cumulative return: " + str(cr),
               "Annualized geometric return: " + str(ar),

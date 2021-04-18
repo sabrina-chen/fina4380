@@ -57,8 +57,7 @@ for day in range(250):    # 250 for 1 year
 
 print(tradePortfolio.NAVlog)
 NAVlog = pd.read_csv("./NAVlog.csv", index_col=0)
-NAVlog.index = pd.to_datetime(NAVlog.index)
+NAVlog.index = pd.to_datetime(NAVlog.index, dayfirst=True)
 portfolio = Performance(NAV=NAVlog)
 Performance.analyze(self=portfolio, rf=0.017)
 Performance.plotting(self=portfolio)
-

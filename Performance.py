@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
-from pandas_datareader import data
+from matplotlib.dates import DateFormatter, MonthLocator
 
 
 class Performance:
@@ -43,22 +43,19 @@ class Performance:
         #start_date = datetime.datetime(2019, 1, 2)
         #end_date = datetime.datetime(2019, 12, 27)
         benchmark = pd.read_csv("SP500.csv", index_col=0)
-        benchmark.index = pd.to_datetime(benchmark.index)
+        benchmark.index = pd.to_datetime(benchmark.index, dayfirst=True)
         #all_weekdays = pd.date_range(start=start_date, end=end_date, freq='B')
-        plt.plot(self.nav, label='Portfolio')
-        plt.plot(benchmark, label="S&P500")
-        #ax.format_xdata = mdates.DateFormatter('%Y-%m')
-        #ax.format_ydata = lambda x: f'${x:.2f}'  # Format the price.
-        #plt.xlim('2020-01-02', '2021-01-04')
+        fig, ax = plt.subplots(figsize=(15, 8))
+        plt.plot(self.nav.index.astype('O'), self.nav, label='Portfolio')
+        plt.plot(benchmark.index.astype('O'), benchmark, label="S&P500")
+        fig.autofmt_xdate()
         plt.xlabel('Date')
         plt.ylabel('Value of US$10m')
         plt.title('Our Strategy vs S&P500')
         plt.legend()
+        ax.grid(True)
+        months = MonthLocator(interval=2)
+        monthsFmt = DateFormatter("%b/%y")
+        ax.xaxis.set_major_locator(months)
+        ax.xaxis.set_major_formatter(monthsFmt)
         plt.show()
-
-
-NAVlog = pd.read_csv("AAPL.csv", index_col=0)
-NAVlog.index = pd.to_datetime(NAVlog.index)
-portfolio = Performance(NAV=NAVlog)
-Performance.analyze(self=portfolio, rf=0.017)
-Performance.plotting(self=portfolio)

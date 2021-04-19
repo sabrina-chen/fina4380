@@ -77,7 +77,10 @@ class DailyUpdate:
                     ADF = reg2[0]
                     ps = ASR ** (self.ADFthreshold - ADF)
 
-                    if ADF > -2.5 or (e0 < 0 and (et > abs(e0)/2)) or (e0 > 0 and (et < -e0/2)):
+                    ret = (np.log(self.price[group.iloc[0,0]].iloc[self.startDay[industry]]) - np.log(self.price[group.iloc[0,0]].iloc[-1])) * group.iloc[0,2]
+                    ret += (np.log(self.price[group.iloc[1,0]].iloc[self.startDay[industry]]) - np.log(self.price[group.iloc[1,0]].iloc[-1])) * group.iloc[1,2]
+
+                    if ADF > -2.5 or (e0 < 0 and (et > abs(e0)/2)) or (e0 > 0 and (et < -e0/2)) or ret < -0.01:
                         print("finding newpair: " + industry)
                         print(f"Closed: ADF = {ADF}\tet = {et}")
                         

@@ -7,8 +7,8 @@ from matplotlib import pyplot as plt
 from Performance import Performance
 
 
-startyear = 2020
-nindustry = 24
+startyear = 2016
+nindustry = 20
 
 tradeTickers = pd.read_csv(f"./tradeTickers_filtered_{nindustry}industries.csv", index_col=0)
 # tradeTickers
@@ -30,7 +30,7 @@ gNAVlog.index.name = None
 
 
 k = 0
-for day in range(250):    # 250 for 1 year
+for day in range(1250):    # 250 for 1 year
     print(f"day {k}")
     # cumret = (np.log(priceClose.iloc[start+day-250:start+day,:]) - np.log(priceClose.iloc[start-250,:]))
     

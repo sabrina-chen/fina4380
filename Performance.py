@@ -55,7 +55,7 @@ class Performance:
         fig.autofmt_xdate()
         plt.xlabel('Date')
         plt.ylabel('Value of US$10m')
-        plt.title('Our Strategy vs S&P500')
+        plt.title('Our Strategy vs Benchamrk')
         plt.legend()
         ax.grid(True)
         months = MonthLocator(interval=2)
@@ -63,9 +63,3 @@ class Performance:
         ax.xaxis.set_major_locator(months)
         ax.xaxis.set_major_formatter(monthsFmt)
         plt.show()
-
-NAVlog = pd.read_csv("./NAVlog.csv", index_col=0)
-NAVlog.index = pd.to_datetime(NAVlog.index, dayfirst=True)
-portfolio = Performance(NAV=NAVlog)
-Performance.analyze(self=portfolio, rf=0.017)
-Performance.plotting(self=portfolio)
